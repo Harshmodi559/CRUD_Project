@@ -1,0 +1,44 @@
+{% extends 'base.html' %} 
+{% load static %} 
+
+
+{% block add %}
+<h1>heelo</h1>
+<form action="" method="post" autocomplete="off">
+  {% csrf_token %}
+  <label for="name">Name :</label>
+  <input type="text" id="name" name="name" />
+  <br />
+  <label for="email">Email :</label>
+  <input type="email" id="email" name="email" />
+  <br />
+  <label for="pass">Name :</label>
+  <input type="password" id="pass" name="password" />
+  <br />
+  <button type="submit">Submit</button>
+</form>
+
+{% endblock add %}
+
+{% block show %}
+<h1>show</h1>
+{% if data %}
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Password</th>
+  </tr>
+  {% for i in data %}
+  <tr>
+    <td>{{i.id}}</td>
+    <td>{{i.name}}</td>
+    <td>{{i.email}}</td>
+    <td>{{i.password}}</td>
+    <td><button onclick="location.href='{% url 'update' i.id %}'">Update</button></td>
+    <td><button onclick="location.href='{% url 'delete' i.id %}'">Delete</button></td>
+  </tr>
+  {% endfor %}
+</table>
+{% endif %} {% endblock show %}
